@@ -103,6 +103,9 @@ function redrawWheel(canvas, angle, prizes) {
   }
 }
 
+var img = new Image();
+img.src = require('../assets/mpg-logo.svg');
+
 // Redraw the wheel frame onto the given canvas.
 function redrawFrame(canvas) {
   const r = Math.min(canvas.width, canvas.height) / 2.05;
@@ -125,10 +128,12 @@ function redrawFrame(canvas) {
   // center ring
   ctx.shadowOffsetX = r / 100;
   ctx.shadowOffsetY = r / 100;
-  ctx.fillStyle = '#424242';
+  ctx.fillStyle = '#f8f7f7';
   ctx.beginPath();
-  ctx.arc(cx, cy, r / 30, 0, 2 * Math.PI, false);
+  ctx.arc(cx, cy, r / 15, 0, 2 * Math.PI, false);
   ctx.fill();
+
+  ctx.drawImage(img, cx - 25, cy - 25, 50, 50);
 
   // prize pointer
   ctx.translate(cx, cy);
@@ -218,6 +223,7 @@ export default {
   },
   mounted() {
     this.resizeIntervalId = setInterval(this.resize, 10);
+    // this.$refs.audio.play()
   },
   beforeDestroy() {
     clearInterval(this.resizeIntervalId);

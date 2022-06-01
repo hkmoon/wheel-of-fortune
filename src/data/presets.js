@@ -88,4 +88,40 @@ export const PRESET3 = {
   ]
 };
 
-export const DEFAULT_PRESETS = [PRESET1, PRESET2, PRESET3];
+// The wheel used in the game show 'Wheel of Fortune'.
+export const PRESET4 = {
+  name: 'Wheel of Scientific Computing',
+  winningText: 'Scientific Computing supports <b>%s</b>?',
+  background: '',
+  removeWinning: false,
+  prizes: [
+    { name: 'Image Segmentation', freq: 3, bg: '#CE93D8', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Genome Sequencing', freq: 3, bg: '#FFF59D', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Commercial Software Licensing', freq: 3, bg: '#FFCC80', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Sequencing Data Analysis', freq: 3, bg: '#F48FB1', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Software Development', freq: 3, bg: '#81D4FA', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Labfolder Support', freq: 3, bg: '#FFCC80', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Machine Learning', freq: 3, bg: '#80CBC4', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Printer Support', freq: 3, bg: '#FFF59D', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Image Acquisition', freq: 3, bg: '#CE93D8', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Spot Detection', freq: 3, bg: '#81D4FA', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Experimental Design', freq: 3, bg: '#F48FB1', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Code Parallelization', freq: 3, bg: '#80CBC4', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Research Data Management Support', freq: 3, bg: '#FFF59D', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Bitcoin Mining', freq: 3, bg: '#F48FB1', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Coding Support', freq: 3, bg: '#80CBC4', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Chip Design', freq: 3, bg: '#FFCC80', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Cluster Support', freq: 3, bg: '#CE93D8', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Cell Tracking', freq: 3, bg: '#81D4FA', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Protein Structure Prediction', freq: 3, bg: '#FFF59D', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Data Backup', freq: 3, bg: '#ef9a9a', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Web Application', freq: 3, bg: '#FFCC80', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Data Management Plans', freq: 3, bg: '#80CBC4', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Data Visualization', freq: 3, bg: '#FFD54F', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Purchasing Computer', freq: 3, bg: '#F48FB1', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Hardware Support', freq: 3, bg: '#80CBC4', text: '#222', hide: false, fontMod: 1 },
+    { name: 'Excel Support', freq: 3, bg: '#81D4FA', text: '#222', hide: false, fontMod: 1 }
+  ]
+};
+
+export const DEFAULT_PRESETS = [PRESET1, PRESET2, PRESET3, PRESET4];

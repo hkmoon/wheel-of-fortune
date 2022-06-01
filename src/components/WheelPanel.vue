@@ -5,7 +5,8 @@
     </div>
 
     <div class="show-records-container">
-      <a href="#" class="button" @click.prevent.stop="displayRecords">Records</a>
+      <!--      <a href="#" class="button" @click.prevent.stop="displayRecords">Records</a>-->
+      <a href="#" class="button" @click.prevent.stop="toggleMusic">{{ musicPlaying ? 'Stop' : 'Play' }} music</a>
     </div>
 
     <transition name="fade">
@@ -15,7 +16,7 @@
     <div class="wheel-panel-content">
       <div class="wheel-header-area">
         <div class="wheel-header" :style="{ width: headerWidth + 'px' }">
-          <div class="wheel-header-title">{{ name }}</div>
+          <div class="wheel-header-title marvin">{{ name }}</div>
         </div>
       </div>
 
@@ -24,32 +25,42 @@
       <div class="wheel-footer-area">
         <div class="wheel-footer">
           <div class="wheel-result" v-html="resultText"></div>
-          <a href="#" class="button" @click.prevent="startSpin">{{ spinText }}</a>
+          <a href="#" class="button spin marvin" @click.prevent="startSpin">{{ spinText }}</a>
         </div>
       </div>
     </div>
 
     <img class="background-image" :src="background ? background : null" />
+    <result-modal v-show="toggleResultModal" :result="pickedResult" @close="closeModal"></result-modal>
   </div>
 </template>
 
 <script>
 import RecordsPanel from './RecordsPanel';
 import Wheel from './Wheel';
+import ResultModal from './ResultModal';
+
 import { mapState } from 'vuex';
+const spinMusic = new Audio(require('../assets/theme.mp3'));
+const spinAudio = new Audio(require('../assets/spin.mp3'));
+const chime = new Audio(require('../assets/chime.mp3'));
 
 export default {
   name: 'WheelPanel',
   components: {
     RecordsPanel,
-    Wheel
+    Wheel,
+    ResultModal
   },
   data() {
     return {
       showRecords: false,
       spinning: false,
       spinText: 'Spin!',
-      resultText: 'Ready. Get set.'
+      resultText: 'Ready. Get set.',
+      pickedResult: '',
+      musicPlaying: false,
+      toggleResultModal: false
     };
   },
   computed: mapState({
@@ -61,6 +72,18 @@ export default {
     headerWidth: state => state.size
   }),
   methods: {
+    toggleMusic() {
+      if (this.musicPlaying) {
+        spinMusic.pause();
+      } else {
+        spinMusic.play();
+      }
+
+      this.musicPlaying = !this.musicPlaying;
+    },
+    closeModal() {
+      this.toggleResultModal = false;
+    },
     displayRecords() {
       this.showRecords = true;
     },
@@ -81,7 +104,11 @@ export default {
       const prize = this.prizes[index];
       this.spinning = false;
       this.spinText = 'Spin again!';
+      // spinAudio.pause();
       this.resultText = this.winningText.replace('%s', prize.name);
+      this.pickedResult = prize.name;
+      this.toggleResultModal = true;
+      chime.play();
     },
 
     // Called by the Spin button. Requests the Wheel to start spinning.
@@ -93,6 +120,7 @@ export default {
         this.spinning = true;
         this.spinText = 'Spinning...';
         this.resultText = '&#8203;';
+        spinAudio.play();
         this.$refs.wheel.startSpin();
       }
     }
@@ -101,6 +129,28 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: 'Marvin';
+  src: local('Marvin'), url(../assets/marvin-webfont.woff) format('woff');
+}
+.marvin {
+  font-family: 'Marvin', Helvetica, Arial;
+}
+
+.spin {
+  font-size: 30px;
+}
+
+.spin:link {
+  color: crimson;
+  /*background-color: #919499;*/
+}
+
+.spin:hover {
+  color: red;
+  background-color: #d7e3f8;
+}
+
 .wheel-panel-content {
   position: relative;
   display: flex;
@@ -117,9 +167,10 @@ export default {
   flex-direction: row;
   justify-content: center;
   flex: 0 0 auto;
-  font-size: 20px;
+  font-size: 40px;
   font-weight: bold;
-  text-align: left;
+  /*text-align: left;*/
+  color: royalblue;
   background-color: rgba(241, 244, 249, 0.3);
 }
 .wheel-header {

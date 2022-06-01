@@ -5,7 +5,7 @@ import * as actions from './actions';
 import * as mutations from './mutations';
 
 import { getAvailable, getInitialPreset } from '../data';
-import { PRESET1 } from '../data/presets';
+import { PRESET4 } from '../data/presets';
 import { loadOptions, loadPresets } from '../data/storage';
 import { deepClone, getParameterByName } from '../util';
 
@@ -16,7 +16,7 @@ const presets = loadPresets();
 
 // Use the preset specified by the parameter, if any.
 const initial = getInitialPreset(getParameterByName('preset'), presets);
-const data = initial ? deepClone(initial) : deepClone(options || PRESET1);
+const data = initial ? deepClone(initial) : deepClone(options || PRESET4);
 
 // If there is no stored options, use the initial data as options.
 if (!options) {

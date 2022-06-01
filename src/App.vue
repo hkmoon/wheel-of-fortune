@@ -59,8 +59,8 @@ input[type='number']:focus {
   border-bottom-color: #546e7a;
 }
 .button {
-  color: #f1f4f9;
-  background-color: #919499;
+  /*color: #f1f4f9;*/
+  /*background-color: #919499;*/
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
@@ -72,8 +72,8 @@ input[type='number']:focus {
 }
 .button:hover,
 .button:focus {
-  color: #fafcff;
-  background-color: #a1a4a9;
+  /*color: #fafcff;*/
+  /*background-color: #a1a4a9;*/
 }
 .button.small {
   text-transform: none;
