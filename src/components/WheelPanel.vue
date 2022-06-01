@@ -19,13 +19,15 @@
           <div class="wheel-header-title marvin">{{ name }}</div>
         </div>
       </div>
+      <div class="wheel-header-area">
+        <a href="#" class="button spin marvin" @click.prevent="startSpin">{{ spinText }}</a>
+      </div>
 
       <Wheel ref="wheel" @result="spinCompleted" />
 
       <div class="wheel-footer-area">
         <div class="wheel-footer">
           <div class="wheel-result" v-html="resultText"></div>
-          <a href="#" class="button spin marvin" @click.prevent="startSpin">{{ spinText }}</a>
         </div>
       </div>
     </div>
@@ -138,7 +140,7 @@ export default {
 }
 
 .spin {
-  font-size: 30px;
+  font-size: 40px;
 }
 
 .spin:link {
