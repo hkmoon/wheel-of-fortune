@@ -6,6 +6,22 @@
       <h6>
         <i>"{{ result }}"</i>?
       </h6>
+      <div v-show="showResult">
+        <h3>
+          {{ correctOrNot }}
+          <font-awesome-icon v-if="correct" class="ml-3" icon="fa-solid fa-smile-wink" size="lg" />
+          <font-awesome-icon v-else class="ml-3" icon="fa-solid fa-sad-tear" size="lg" />
+        </h3>
+      </div>
+      <button class="yes" @click="yes">
+        Yes
+        <font-awesome-icon class="ml-3" icon="fa-solid fa-thumbs-up" size="lg" />
+      </button>
+      <button class="no" @click="no">
+        No
+        <font-awesome-icon class="ml-3" icon="fa-solid fa-thumbs-down" size="lg" />
+      </button>
+      <br />
       <button @click="close">Close</button>
     </div>
     <div class="close" @click="close">
@@ -15,16 +31,49 @@
 </template>
 
 <script>
+const correct = new Audio(require('../assets/correct.mp3'));
+const wrong = new Audio(require('../assets/wrong.mp3'));
+
 export default {
   components: {},
-  props: ['result'],
+  props: ['result', 'answer'],
   data() {
-    return {};
+    return {
+      showResult: false,
+      correct: false,
+      correctOrNot: ''
+    };
   },
 
   methods: {
     close() {
+      this.showResult = false;
+      this.correctOrNot = '';
       this.$emit('close');
+    },
+    yes() {
+      if (this.answer) {
+        correct.play();
+        this.correct = true;
+        this.correctOrNot = 'Correct!';
+      } else {
+        wrong.play();
+        this.correct = false;
+        this.correctOrNot = 'Wrong!';
+      }
+      this.showResult = true;
+    },
+    no() {
+      if (!this.answer) {
+        correct.play();
+        this.correct = true;
+        this.correctOrNot = 'Correct!';
+      } else {
+        wrong.play();
+        this.correct = false;
+        this.correctOrNot = 'Wrong!';
+      }
+      this.showResult = true;
     }
   }
 };
@@ -46,7 +95,7 @@ export default {
 .modal {
   text-align: center;
   background-color: white;
-  height: 400px;
+  height: 500px;
   width: 500px;
   margin-top: 10%;
   padding: 60px 0;
@@ -78,11 +127,21 @@ p {
 
 button {
   background-color: #ac003e;
-  width: 150px;
+  width: 100px;
   height: 40px;
   color: white;
   font-size: 14px;
   border-radius: 16px;
   margin-top: 50px;
+}
+
+.yes {
+  background-color: #4fa6b2;
+  width: 150px;
+}
+
+.no {
+  background-color: #c74342;
+  width: 150px;
 }
 </style>

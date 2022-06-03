@@ -33,7 +33,7 @@
     </div>
 
     <img class="background-image" :src="background ? background : null" />
-    <result-modal v-show="toggleResultModal" :result="pickedResult" @close="closeModal"></result-modal>
+    <result-modal v-show="toggleResultModal" :result="pickedResult" :answer="answer" @close="closeModal"></result-modal>
   </div>
 </template>
 
@@ -62,7 +62,8 @@ export default {
       resultText: 'Ready. Get set.',
       pickedResult: '',
       musicPlaying: false,
-      toggleResultModal: false
+      toggleResultModal: false,
+      answer: true
     };
   },
   computed: mapState({
@@ -109,6 +110,7 @@ export default {
       // spinAudio.pause();
       this.resultText = this.winningText.replace('%s', prize.name);
       this.pickedResult = prize.name;
+      this.answer = prize.answer;
       this.toggleResultModal = true;
       chime.play();
     },
