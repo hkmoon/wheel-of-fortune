@@ -1,6 +1,6 @@
 <template>
   <div class="wheels-container">
-    <div class="wheels">
+    <div class="wheels" @click="clickStartSpin">
       <div class="wheel-container">
         <canvas class="wheel-main" ref="mainCanvas" />
       </div>
@@ -164,6 +164,9 @@ export default {
     }
   },
   methods: {
+    clickStartSpin() {
+      this.$emit('startSpin');
+    },
     // Resize and repaint the wheel if the size of the canvas changes.
     resize() {
       const mainCanvas = this.$refs.mainCanvas;

@@ -8,7 +8,6 @@
       </h6>
       <div v-show="showResult">
         <h3>
-          {{ correctOrNot }}
           <font-awesome-icon v-if="correct" class="ml-3" icon="fa-solid fa-smile-wink" size="lg" />
           <font-awesome-icon v-else class="ml-3" icon="fa-solid fa-sad-tear" size="lg" />
         </h3>
@@ -96,8 +95,8 @@ export default {
   text-align: center;
   background-color: white;
   height: 500px;
-  width: 500px;
-  margin-top: 10%;
+  width: 600px;
+  margin-top: 30%;
   padding: 60px 0;
   border-radius: 20px;
 }

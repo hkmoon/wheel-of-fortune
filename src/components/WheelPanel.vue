@@ -16,14 +16,14 @@
     <div class="wheel-panel-content">
       <div class="wheel-header-area">
         <div class="wheel-header" :style="{ width: headerWidth + 'px' }">
-          <div class="wheel-header-title marvin">{{ name }}</div>
+          <div class="wheel-header-title marvin"><br /><br /><br /><br /><br /><br />{{ name }}</div>
         </div>
       </div>
       <div class="wheel-header-area">
         <a href="#" class="button spin marvin" @click.prevent="startSpin">{{ spinText }}</a>
       </div>
 
-      <Wheel ref="wheel" @result="spinCompleted" />
+      <Wheel ref="wheel" @result="spinCompleted" @startSpin="startSpin" />
 
       <div class="wheel-footer-area">
         <div class="wheel-footer">
@@ -44,6 +44,7 @@ import ResultModal from './ResultModal';
 
 import { mapState } from 'vuex';
 const spinMusic = new Audio(require('../assets/theme.mp3'));
+spinMusic.loop = true;
 const spinAudio = new Audio(require('../assets/spin.mp3'));
 const chime = new Audio(require('../assets/chime.mp3'));
 
